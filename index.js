@@ -9,6 +9,3 @@ require("fs").readdirSync('./lib').forEach(function(file) {
 var queryBuilder = {};
 
 module.exports = BaseQuery;
-// var q = new BaseQuery();
-// q.addQuery('nested', {});
-// console.log(q.get());

@@ -1,5 +1,5 @@
 {
-  "name": "yalo-es-query-generator",
+  "name": "es-query-builder",
   "version": "0.1.0",
   "description": "A library that generates elastic search queries",
   "main": "index.js",
@@ -7,5 +7,18 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "x0y <x0y@milkyweb.co>",
-  "license": "ISC"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MilkyWeb/es-query-builder.git"
+  },
+  "keywords": [
+    "ElasticSearch",
+    "Query",
+    "DSL"
+  ],
+  "bugs": {
+    "url": "https://github.com/MilkyWeb/es-query-builder/issues"
+  },
+  "homepage": "https://github.com/MilkyWeb/es-query-builder#readme"
 }
