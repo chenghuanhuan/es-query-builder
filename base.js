@@ -4,9 +4,12 @@ var Query = function() {
         query: {}
     };
     this.queriesToApply = [];
+    this.filtersToApply = [];
+    this.sort = [];
 };
 
 Query.queries = {};
+Query.filters = {};
 
 Query.prototype.get = function() {
     var i,
@@ -24,6 +27,19 @@ Query.prototype.get = function() {
        opts  = temp.opts;
        Query.queries[name].get.call(this, this, opts);
     };
+
+    max = this.filtersToApply.length;
+    for (i = 0; i < max; i++) {
+       temp = this.filtersToApply[i];
+       name = temp.name;
+       opts  = temp.opts;
+       Query.filters[name].get.call(this, this, opts);
+    };
+
+    if (this.sort.length) {
+        this.body.sort = this.sort;
+    }
+
     return this.body;
 };
 
@@ -35,7 +51,22 @@ Query.prototype.addQuery = function(queryName, opts) {
 };
 
 Query.prototype.addFilter = function(filterName, opts) {
-    //WIp
+    this.filtersToApply.push({
+        name: filterName,
+        opts: opts
+    });
+};
+
+Query.prototype.addSort = function(sortType, opts) {
+    switch (sortType) {
+        case 'geo_distance':
+            this.sort.push({
+                "_geo_distance": opts
+            });
+            break;
+        default:
+            this.sort.push(opts);
+    }
 };
 
 module.exports = Query;
