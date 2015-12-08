@@ -1,4 +1,5 @@
-# Query Builder for the search method in Elastic Search API
+# ES Query Builder
+A basic query builder for elastic search DSL
 
 ### Example:
 
