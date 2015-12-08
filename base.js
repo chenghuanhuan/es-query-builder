@@ -18,23 +18,27 @@ Query.prototype.get = function() {
        name,
        opts;
 
-    var query = this.query;
-
     max = this.queriesToApply.length;
-    for (i = 0; i < max; i++) {
-       temp = this.queriesToApply[i];
-       name = temp.name;
-       opts  = temp.opts;
-       Query.queries[name].get.call(this, this, opts);
-    };
+    if (max) {
+        for (i = 0; i < max; i++) {
+           temp = this.queriesToApply[i];
+           name = temp.name;
+           opts  = temp.opts;
+           Query.queries[name].get.call(this, this, opts);
+        };
+    } else {
+        delete this.body.query;
+    }
 
     max = this.filtersToApply.length;
-    for (i = 0; i < max; i++) {
-       temp = this.filtersToApply[i];
-       name = temp.name;
-       opts  = temp.opts;
-       Query.filters[name].get.call(this, this, opts);
-    };
+    if (max) {
+        for (i = 0; i < max; i++) {
+           temp = this.filtersToApply[i];
+           name = temp.name;
+           opts  = temp.opts;
+           Query.filters[name].get.call(this, this, opts);
+        };
+    }
 
     if (this.sort.length) {
         this.body.sort = this.sort;

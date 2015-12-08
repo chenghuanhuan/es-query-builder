@@ -20,15 +20,15 @@ module.exports = BaseQuery;
 
 //test
 var q = new BaseQuery();
-
-q.addQuery('nested', {
-    path: 'categories',
-    query: {
-        match: {
-            "categories.id": 'restaurantes'
-        }
-    }
-});
+// 
+// q.addQuery('nested', {
+//     path: 'categories',
+//     query: {
+//         match: {
+//             "categories.id": 'restaurantes'
+//         }
+//     }
+// });
 q.addFilter('geo_distance', {
     distance: '1km',
     lat: 19.465313,
