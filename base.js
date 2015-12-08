@@ -1,9 +1,7 @@
-var lib = './lib/';
-
 //Component Query
 var Query = function() {
-    this.query = {
-        body: null
+    this.body = {
+        query: {}
     };
     this.queriesToApply = [];
 };
@@ -26,7 +24,7 @@ Query.prototype.get = function() {
        opts  = temp.opts;
        Query.queries[name].get.call(this, this, opts);
     };
-    return this.query;
+    return this.body;
 };
 
 Query.prototype.addQuery = function(queryName, opts) {
