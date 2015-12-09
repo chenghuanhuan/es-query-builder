@@ -56,6 +56,17 @@ Query.prototype.get = function() {
 Query.prototype.addQuery = function(queryName, opts) {
     this.queriesToApply.push({
         name: queryName,
+        context: 'query',
+        opts: opts
+    });
+
+    return this;
+};
+
+Query.prototype.addFilteredQuery = function(queryName, opts) {
+    this.queriesToApply.push({
+        name: queryName,
+        context: 'filter',
         opts: opts
     });
 

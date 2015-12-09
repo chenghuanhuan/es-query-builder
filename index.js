@@ -27,7 +27,7 @@ require("fs").readdirSync(normalizedPath).forEach(function(file) {
 module.exports = BaseQuery;
 
 //test
-var q = new BaseQuery();
+// var q = new BaseQuery();
 //
 // q.addQuery('nested', {
 //     path: 'categories',
@@ -38,6 +38,11 @@ var q = new BaseQuery();
 //     }
 // });
 // q.addFilter('geo_distance', {
+//     distance: '1km',
+//     lat: 19.465313,
+//     lon: -99.143719
+// });
+// q.addFilteredQuery('geo_distance', {
 //     distance: '1km',
 //     lat: 19.465313,
 //     lon: -99.143719
