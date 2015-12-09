@@ -5,11 +5,13 @@ var Query = function() {
     };
     this.queriesToApply = [];
     this.filtersToApply = [];
+    this.aggsToApply = [];
     this.sort = [];
 };
 
 Query.queries = {};
 Query.filters = {};
+Query.aggs = {};
 
 Query.prototype.get = function() {
     var i,
@@ -22,9 +24,7 @@ Query.prototype.get = function() {
     if (max) {
         for (i = 0; i < max; i++) {
            temp = this.queriesToApply[i];
-           name = temp.name;
-           opts  = temp.opts;
-           Query.queries[name].get.call(this, this, opts);
+           Query.queries[temp.name].get.call(this, this, temp.opts);
         };
     } else {
         delete this.body.query;
@@ -34,9 +34,15 @@ Query.prototype.get = function() {
     if (max) {
         for (i = 0; i < max; i++) {
            temp = this.filtersToApply[i];
-           name = temp.name;
-           opts  = temp.opts;
-           Query.filters[name].get.call(this, this, opts);
+           Query.filters[temp.name].get.call(this, this, temp.opts);
+        };
+    }
+
+    max = this.aggsToApply.length;
+    if (max) {
+        for (i = 0; i < max; i++) {
+           temp = this.aggsToApply[i];
+           Query.aggs[temp.name].get.call(this, this, temp.opts);
         };
     }
 
@@ -52,6 +58,8 @@ Query.prototype.addQuery = function(queryName, opts) {
         name: queryName,
         opts: opts
     });
+
+    return this;
 };
 
 Query.prototype.addFilter = function(filterName, opts) {
@@ -59,6 +67,17 @@ Query.prototype.addFilter = function(filterName, opts) {
         name: filterName,
         opts: opts
     });
+
+    return this;
+};
+
+Query.prototype.addAggregation = function(aggregationName, opts) {
+    this.aggsToApply.push({
+        name: aggregationName,
+        opts: opts
+    });
+
+    return this;
 };
 
 Query.prototype.addSort = function(sortType, opts) {
