@@ -1,11 +1,9 @@
 
 module.exports = {
-    get: function(Query, opts) {
+    get: function(Query, context, opts) {
 
         if (!opts.distance || !opts.lat || !opts.lon)
             throw new Error('Missing distance|lat|lon param in geo distance filtered query');
-
-        var context = opts.context == 'query'? 'must':'filter';
 
         if (typeof Query.body.query.bool == 'undefined') {
             Query.body.query.bool = {};

@@ -18,13 +18,15 @@ Query.prototype.get = function() {
        max,
        temp,
        name,
-       opts;
+       opts,
+       context;
 
     max = this.queriesToApply.length;
     if (max) {
         for (i = 0; i < max; i++) {
            temp = this.queriesToApply[i];
-           Query.queries[temp.name].get.call(this, this, temp.opts);
+           context = temp.opts.context == 'query'? 'must':'filter';
+           Query.queries[temp.name].get.call(this, this, context, temp.opts);
         };
     } else {
         delete this.body.query;
