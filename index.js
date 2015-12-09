@@ -1,25 +1,29 @@
+var Path = require('path');
+var fs = require('fs');
 var BaseQuery = require('./base.js');
+
+var normalizedPath;
 var queriesDir = 'queries';
 var filtersDir = 'filters';
 var aggregationsDir = 'aggs';
 
 //Loading all queries available
-var normalizedPath = require("path").join(__dirname, queriesDir);
-require("fs").readdirSync(normalizedPath).forEach(function(file) {
+normalizedPath = Path.join(__dirname, queriesDir);
+fs.readdirSync(normalizedPath).forEach(function(file) {
     var queryName = file.replace('.js','');
     BaseQuery.queries[queryName] = require("./" + queriesDir + '/' + file);
 });
 
 //Loading all available filters
-var normalizedPath = require("path").join(__dirname, filtersDir);
-require("fs").readdirSync(normalizedPath).forEach(function(file) {
+normalizedPath = Path.join(__dirname, filtersDir);
+fs.readdirSync(normalizedPath).forEach(function(file) {
     var filterName = file.replace('.js','');
     BaseQuery.filters[filterName] = require("./" + filtersDir + '/' + file);
 });
 
 //Loading all available aggregations
-var normalizedPath = require("path").join(__dirname, aggregationsDir);
-require("fs").readdirSync(normalizedPath).forEach(function(file) {
+normalizedPath = Path.join(__dirname, aggregationsDir);
+fs.readdirSync(normalizedPath).forEach(function(file) {
     var aggregationName = file.replace('.js','');
     BaseQuery.aggs[aggregationName] = require("./" + aggregationsDir + '/' + file);
 });

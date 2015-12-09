@@ -16,17 +16,25 @@ Query.aggs = {};
 Query.prototype.get = function() {
     var i,
        max,
-       temp,
+       query,
        name,
        opts,
        context;
 
     max = this.queriesToApply.length;
     if (max) {
+        if (typeof this.body.query.bool == 'undefined') {
+            this.body.query.bool = {};
+        }
         for (i = 0; i < max; i++) {
-           temp = this.queriesToApply[i];
-           context = temp.opts.context == 'query'? 'must':'filter';
-           Query.queries[temp.name].get.call(this, this, context, temp.opts);
+            query = this.queriesToApply[i];
+
+            context = query.context == 'query'? 'must':'filter';
+            if (typeof this.body.query.bool[context] == 'undefined') {
+                this.body.query.bool[context] = [];
+            }
+
+            Query.queries[query.name].get.call(this, this, context, query.opts);
         };
     } else {
         delete this.body.query;
