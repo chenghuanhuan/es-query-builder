@@ -51,6 +51,9 @@ module.exports = BaseQuery;
 //     lat: 19.465313,
 //     lon: -99.143719
 // });
+// q.addFilteredQuery('term', {
+//     "address.city.id": "distrito-federal_iztapalapa"
+// });
 // q.addSort('geo_distance', {
 //     "location": {
 //         "lat":  19.465313,
@@ -70,5 +73,9 @@ module.exports = BaseQuery;
 //             }
 //         }
 //     }
+// });
+// q.addAggregation('terms', {
+//     "field" : "address.zone.name",
+//     "size": 25
 // });
 // console.log(JSON.stringify(q.get(), null, 2));
