@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MilkyWeb/es-query-builder.git"
+    "url": "git+https://github.com/x0y-gt/es-query-builder.git"
   },
   "keywords": [
     "ElasticSearch",
@@ -18,7 +18,7 @@
     "DSL"
   ],
   "bugs": {
-    "url": "https://github.com/MilkyWeb/es-query-builder/issues"
+    "url": "https://github.com/x0y-gt/es-query-builder/issues"
   },
-  "homepage": "https://github.com/MilkyWeb/es-query-builder#readme"
+  "homepage": "https://github.com/x0y-gt/es-query-builder#readme"
 }
